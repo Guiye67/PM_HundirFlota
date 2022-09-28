@@ -1,3 +1,6 @@
 fun main(args: Array<String>) {
-    //test
+    var tablero: Tablero = Tablero()
+    var barco: Barco = Barco('E', 'V', 2, 'A')
+    tablero.colocarBarco(barco)
+    tablero.mostrarTablero()
 }
