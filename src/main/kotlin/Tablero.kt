@@ -123,7 +123,7 @@ class Tablero {
     fun generarBarcoRandom() {
         var barco:Barco
         var tipo:Char
-        var cont:Int = 0
+        var cont:Int = 0 // 1xA, 3xE, 2xI, 1xO, 1xU
         while (cont < 8) {
             while (true) {
                 var aux = (1..2).random()
