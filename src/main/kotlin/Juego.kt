@@ -29,7 +29,7 @@ class Juego {
         return elec == 1
     }
 
-    // preguntar colocacion aleatoria
+
     // desarrollar colocacion a mano
     // funcion disparo manual y aleatorio
     // funcion comprobar disparo

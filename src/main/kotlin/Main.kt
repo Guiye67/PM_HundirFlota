@@ -3,12 +3,12 @@ fun main(args: Array<String>) {
     juego.bienvenida()
 
     if (juego.preguntaColocacion())
-        println("colocacion a mano")
+        juego.tableroJugador.colocacionManual()
     else
         juego.tableroJugador.generarBarcoRandom()
 
     juego.tableroMaquina.generarBarcoRandom()
-    juego.tableroMaquina.revelarTablero()
+    juego.tableroMaquina.mostrarTablero()
 
     juego.tableroJugador.revelarTablero()
 }
