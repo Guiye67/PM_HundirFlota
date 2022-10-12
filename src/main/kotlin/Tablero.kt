@@ -205,7 +205,7 @@ class Tablero {
                     println("Dirección no disponible, introduce otra")
                     aux = readln()
                 }
-                var dir = aux.toCharArray()
+                val dir = aux.toCharArray()
                 barco = Barco(tipo, dir[0], (posicion[0].code - 48), posicion[1])
                 if (!comprobarSitio(barco))
                     println("No se puede colocar el barco ahi porque el sitio esta ocupado")

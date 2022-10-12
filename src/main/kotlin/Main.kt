@@ -1,5 +1,5 @@
 fun main(args: Array<String>) {
-    var juego: Juego = Juego()
+    val juego = Juego()
     juego.bienvenida()
 
     if (juego.preguntaColocacion())

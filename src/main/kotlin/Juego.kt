@@ -2,10 +2,6 @@ class Juego {
     var tableroJugador = Tablero()
     var tableroMaquina = Tablero()
 
-    init {
-
-    }
-
     fun bienvenida() {
         println("\n********************* BIENVENIDO A HUNDIR LA FLOTA ********************\n" +
                 "* El juego consiste en colocar barcos en el tablero, después deberás  *\n" +
@@ -21,7 +17,7 @@ class Juego {
     fun preguntaColocacion():Boolean {
         println("¿Cómo quieres realizar la colocación de los barcos?\n" +
                 "(1) Manualmente / (2) De forma aleatoria")
-        var elec = readln().toInt();
+        var elec = readln().toInt()
         while (elec < 1 || elec > 2) {
             println("Opción no disponible, prueba otra")
             elec = readln().toInt()
@@ -34,7 +30,7 @@ class Juego {
         tableroMaquina.mostrarTablero()
         println("¿Deseas disparar de forma aleatoria o manualmente? (A/M)")
         var elec = readln()
-        while (!(elec.equals("A") || elec.equals("M"))) {
+        while (!(elec =="A" || elec == "M")) {
             println("Elección no disponible, introduce otra")
             elec = readln()
         }
