@@ -29,8 +29,53 @@ class Juego {
         return elec == 1
     }
 
+    fun rondaDisparos() {
+        println("\n**Tu turno**\nTablero de la máquina:")
+        tableroMaquina.mostrarTablero()
+        println("¿Deseas disparar de forma aleatoria o manualmente? (A/M)")
+        var elec = readln()
+        while (!(elec.equals("A") || elec.equals("M"))) {
+            println("Elección no disponible, introduce otra")
+            elec = readln()
+        }
 
-    // desarrollar colocacion a mano
-    // funcion disparo manual y aleatorio
-    // funcion comprobar disparo
+        if (elec == "M") {
+            var result = 0
+            while (result != 1) {
+                println("Introduce la casilla a la que disprar: (Ejemplo: 1A)")
+                var casilla = readln().toCharArray()
+                while (tableroJugador.comprobarPosicionIntroducida(casilla)) {
+                    println("Posición no disponible, introduce otra")
+                    casilla = readln().toCharArray()
+                }
+                if (casilla.size == 2)
+                    result = tableroMaquina.procesarDisparo((casilla[0].code - 49), (casilla[1].code - 65))
+                else
+                    result = tableroMaquina.procesarDisparo(9, (casilla[2].code - 65))
+
+                if (result == 2)
+                    println("Ya has disparado en esa posición anteriormente, prueba otra vez")
+                else if (result == 3) {
+                    if (tableroMaquina.vidas == 0)
+                        break
+                    else {
+                        println("¡ACIERTO! Tienes otra oportunidad")
+                        tableroMaquina.mostrarTablero()
+                    }
+                }
+            }
+            if (tableroMaquina.vidas != 0)
+                println("Has fallado, turno de la máquina")
+        } else {
+            tableroMaquina.disparoAleatorio()
+            if (tableroMaquina.vidas != 0)
+                println("**Turno de la máquina**")
+        }
+
+        if (tableroMaquina.vidas != 0) {
+            tableroJugador.disparoAleatorio()
+            println("Tu tablero:")
+            tableroJugador.revelarTablero()
+        }
+    }
 }

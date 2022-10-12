@@ -1,5 +1,7 @@
 class Tablero {
-    private var tablero = mutableListOf<MutableList<Char>>()
+    //private var tablero = mutableListOf<MutableList<Char>>()
+    var tablero = mutableListOf<MutableList<Char>>()
+    var vidas = 22
 
     init {
         for (i in 0..9) {
@@ -54,7 +56,7 @@ class Tablero {
             var fila = ""
             fila += "${str.get(i)}|"
             for (j in 0..9) {
-                if (!tablero[i][j].equals('@') || !tablero[i][j].equals('X'))
+                if (!(tablero[i][j].equals('@') || tablero[i][j].equals('X')))
                     fila += " |"
                 else
                     fila += "${tablero[i][j]}|"
@@ -205,6 +207,8 @@ class Tablero {
                 }
                 var dir = aux.toCharArray()
                 barco = Barco(tipo, dir[0], (posicion[0].code - 48), posicion[1])
+                if (!comprobarSitio(barco))
+                    println("No se puede colocar el barco ahi porque el sitio esta ocupado")
             } while (!comprobarSitio(barco))
 
             colocarBarco(barco)
@@ -231,5 +235,39 @@ class Tablero {
             return false
         }
         return true
+    }
+
+    fun disparoAleatorio() {
+        var x:Int
+        var y:Int
+        var result = 0
+        var cont = 0
+        while (result != 1) {
+            x = (0..9).random()
+            y = (0..9).random()
+            result = procesarDisparo(x, y)
+            if (result == 3) {
+                println("¡ACIERTO! Disparando otra vez...")
+                cont++
+                if (vidas == 0)
+                    break
+            } else if (result == 1) {
+                println("¡Fallo!")
+            }
+        }
+        println("Resumen: $cont aciertos\n")
+    }
+
+    fun procesarDisparo(x:Int, y:Int):Int {
+        if (tablero[y][x] == ' ') {
+            tablero[y][x] = '@'
+            return 1
+        } else if (tablero[y][x] == '@' || tablero[y][x] == 'X') {
+            return 2
+        } else {
+            tablero[y][x] = 'X'
+            vidas--
+            return 3
+        }
     }
 }
